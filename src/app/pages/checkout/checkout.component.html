@@ -1,0 +1,138 @@
+<section class="bg-slate-200 rounded-md shadow-md p-4 my-4 mx-auto w-2/3">
+    <form [formGroup]="detailsForm" (ngSubmit)="detailsSumbit()">
+
+
+        <div class="my-3">
+            @let detailsFormControl = detailsForm.get('details');
+
+            <label for="details" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"> 
+            <span><i class="fa-solid fa-asterisk text-red-400 p-2"></i></span>details
+            </label>
+
+            <input 
+            
+            formControlName="details"
+            type="text" id="details"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-gray-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-emerald-500 dark:focus:border-emerald-500"
+            />
+
+            @if(detailsFormControl?.errors && detailsFormControl?.touched){
+
+                <div
+                class="flex my-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+                role="alert">
+                <svg
+                  class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                  />
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                  <span class="font-medium">Please check errors:</span>
+                  <ul class="mt-1.5 list-disc list-inside">
+                    @if(detailsForm.get('details')?.getError('required')){
+                    <li>Details is required</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            }
+         
+        </div>
+    
+
+        <div class="my-3">
+            @let phoneFormControl = detailsForm.get('phone');
+
+            <label for="details" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"> 
+            <span><i class="fa-solid fa-asterisk text-red-400 p-2"></i></span>phone
+            </label>
+
+            <input 
+            
+            formControlName="phone"
+            type="tel" id="phone"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-gray-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-emerald-500 dark:focus:border-emerald-500"
+            />
+
+            @if(phoneFormControl?.errors && phoneFormControl?.touched){
+
+                <div
+                class="flex my-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+                role="alert">
+                <svg
+                  class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                  />
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                  <span class="font-medium">Please check errors:</span>
+                  <ul class="mt-1.5 list-disc list-inside">
+                    @if(detailsForm.get('phone')?.getError('required')){
+                    <li>Phone is required</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            }
+         
+        </div>
+
+        <div class="my-3">
+            @let cityFormControl = detailsForm.get('city');
+
+            <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"> 
+            <span><i class="fa-solid fa-asterisk text-red-400 p-2"></i></span>city
+            </label>
+
+            <input 
+            formControlName="city"
+            type="text" id="city"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-gray-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-emerald-500 dark:focus:border-emerald-500"
+            />
+
+            @if(cityFormControl?.errors && cityFormControl?.touched){
+                <div
+                class="flex my-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+                role="alert">
+                <svg
+                  class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                  />
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                  <span class="font-medium">Please check errors:</span>
+                  <ul class="mt-1.5 list-disc list-inside">
+                    @if(detailsForm.get('city')?.getError('city')){
+                    <li>Details is required</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            }
+         
+        </div>
+
+        <button class="my-btn"><span class="p-2"><i class="fa-brands fa-cc-visa"></i></span>Payment</button>
+    </form>
+</section>

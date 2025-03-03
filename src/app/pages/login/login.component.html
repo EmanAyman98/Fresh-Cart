@@ -1,0 +1,147 @@
+
+<section class="bg-slate-200 rounded-md shadow-md p-4 my-4 mx-auto w-2/3">
+    <h1 class="text-main font-bold text-1">Login</h1>
+    @if(resText){
+        <div class="text-center">
+       
+          <span class="rounded bg-red-500 text-white p-2 ms-5"><i class="fa-solid fa-triangle-exclamation m-2"></i>{{resText}}</span>
+      </div>
+      }
+    <form [formGroup]="loginForm" (ngSubmit)="showUserData()">
+      
+        <div class="my-3">
+            @let emailFormControl = loginForm.get('email');
+
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"> 
+            <span><i class="fa-solid fa-asterisk text-red-400 p-2"></i></span>Email
+            </label>
+
+            <input 
+            
+            formControlName="email"
+            type="email" id="email"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-gray-500 block w-full p-2.5 dark:placeholder-gray-400 dark:text-black dark:focus:ring-emerald-500 dark:focus:border-emerald-500"
+            />
+
+            @if(emailFormControl?.errors && emailFormControl?.touched){
+
+                <div
+                class="flex my-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+                role="alert">
+                <svg
+                  class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                  />
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                  <span class="font-medium">Please check errors:</span>
+                  <ul class="mt-1.5 list-disc list-inside">
+                    @if(loginForm.get('email')?.getError('required')){
+                    <li>Email is required</li>
+                    } @if(loginForm.get('email')?.getError('email')){
+                    <li>Email Format is not correct</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            }
+         
+        </div>
+    
+        <div class="my-3">
+            @let passwordFormControl = loginForm.get('password');
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"><span><i class="fa-solid fa-asterisk text-red-400 p-2"></i></span>Password</label>
+            <input formControlName="password"
+            type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-gray-500 block w-full p-2.5   dark:placeholder-gray-400  dark:focus:ring-emerald-500 dark:focus:border-emerald-500"
+            />
+
+
+
+            @if(passwordFormControl?.errors && passwordFormControl?.touched){
+                <div
+                class="flex my-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400"
+                role="alert">
+                <svg
+                  class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                  />
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                  <span class="font-medium">Please check errors:</span>
+                  <ul class="mt-1.5 list-disc list-inside">
+                    @if(loginForm.get('password')?.getError('required')){
+                    <li>Password is required</li>
+                    } @if(loginForm.get('password')?.getError('pattern')){
+                    <li>Password Format is not correct</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+
+            }
+           
+        
+        </div>
+    
+ 
+        
+<!--     
+        <button [disabled]="loginForm.invalid" class="my-btn disabled:disabled:bg-slate-300">
+            @if(loading){<span><i class="fa-solid fa-circle-notch fa-spin"></i></span>} 
+            @if(!loading){ Login <span><i class="fa-solid fa-arrow-right-to-bracket"></i></span>}
+           </button> -->
+
+           <button type="submit" class="w-full mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+           [disabled]="loading || loginForm.invalid">
+           {{ loading ? 'Logging in...' : 'Login' }}
+         </button>
+     
+        
+     
+         <p class="text-center mt-4 text-blue-600 cursor-pointer" (click)="toggleForgotPassword()">
+           Forgot Password?
+         </p>
+    </form>
+
+
+  <form [formGroup]="forgotPasswordForm">
+    @if(isForgotPassword){
+
+      <div class="my-3">
+        <label for="forgot-email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+            <span><i class="fa-solid fa-asterisk text-red-400 p-2"></i></span>Enter Your Email
+        </label>
+        <input formControlName="email" type="email" id="forgot-email"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-gray-500 block w-full p-2.5"
+            placeholder="Enter your email" />
+    </div>
+
+    <button [disabled]="forgotPasswordForm.invalid" class="my-btn disabled:disabled:bg-slate-300">
+      @if(loading){ <span><i class="fa-solid fa-circle-notch fa-spin"></i></span> }
+      @if(!loading){ Send Reset Link <span><i class="fa-solid fa-envelope"></i></span> }
+  </button>
+
+  <p class="text-center mt-4 text-blue-600 cursor-pointer" (click)="toggleForgotPassword()">
+    Back to Login
+</p>
+    }
+  </form>
+  
+    </section> 
+
+
+    

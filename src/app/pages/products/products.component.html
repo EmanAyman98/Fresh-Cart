@@ -1,0 +1,33 @@
+
+    <section class=" rounded p-3 my-5">   
+      <div class="container w-[90%] mx-auto"> 
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Products: </h1>
+        <div class="grid gap-4 id-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+         
+            @for(product of  allProducts; track product._id){
+                <div class="product p-4 cursor-pointer" >
+                    <div class="mt-4">
+                      <img [src]="product.imageCover" [alt]="product.title" />
+                    </div>
+                    <div class="mt-4">
+                      <h2 class="text-main">{{product.category.name}}</h2>
+                      <h1 class="font-black">{{product.title.split(' ').slice(0,3).join(' ')}}</h1>
+                      <div class="flex flex-wrap justify-between">
+                        <h3>{{product.price}}</h3>
+                        <span><i class="fa-solid fa-star rating-color">{{product.ratingsAverage}}</i></span>
+                      </div>
+                     <button>
+                      <span>  <i class="fas fa-heart text-xl"></i></span>
+                     </button>
+
+                     <div class="mt-4">
+                      <button (click)="addtoCart(product._id)" class="btn-main w-3/4 block mx-auto mt-4">+Add to cart</button>
+                    </div>
+                    </div>
+                </div>     
+            }
+            
+        </div>
+      </div>
+    </section>
+   

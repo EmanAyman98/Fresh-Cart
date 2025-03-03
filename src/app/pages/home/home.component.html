@@ -1,0 +1,92 @@
+<!-- Main Slider -->
+ <section class="p-4 my-5">
+    <div class="container w-[90%] mx-auto">
+       <div class="flex flex-wrap">
+        <div class="w-full sm:w-full md:w-1/2 lg:w-3/4">
+            <owl-carousel-o [options]="mainSliderOption">
+                <ng-template carouselSlide>
+                    <img src="./images/img1.avif" alt="" class="h-80">
+                </ng-template>  
+                <ng-template carouselSlide>
+                    <img src="./images/img2.avif" alt="" class="h-80">
+                </ng-template> 
+                <ng-template carouselSlide>
+                    <img src="./images/img3.avif" alt="" class="h-80">
+                </ng-template> 
+                <ng-template carouselSlide>
+                    <img src="./images/img4.avif" alt="" class="h-80">
+                </ng-template> 
+                <ng-template carouselSlide>
+                    <img src="./images/img5.avif" alt="" class="h-80">
+                </ng-template> 
+                <ng-template carouselSlide>
+                    <img src="./images/img6.avif" alt="" class="h-80">
+                </ng-template>
+              </owl-carousel-o>
+        </div>
+        <div class="w-full sm:w-full md:w-1/2  lg:w-1/4">
+            <img src="./images/grocery-banner-2.jpeg" alt="" class="h-40">
+            <img src="./images/grocery-banner.png" alt="" class="h-40">
+
+        </div>
+       </div>
+    </div>
+ </section>
+
+<!-- Slider -->
+<section class="p-4 my-5">
+ <div class="container w-[90%] mx-auto">
+    <h1>All Categories</h1>
+    <owl-carousel-o [options]="customOptions">
+          @for(category of categoryData ; track category._id){
+            <ng-template carouselSlide>
+                <img [src]="category.image" [alt]="category.name" class="w-full h-[250px]">
+              </ng-template>
+          }
+    
+    </owl-carousel-o>
+
+
+ </div>
+
+</section>
+
+<!-- Products -->
+ @if(productData != null && categoryData != null ){
+  <section class=" rounded p-3 my-5">   
+    <div class="container w-[90%] mx-auto"> 
+      <input [(ngModel)]="SearchValue" type="text" placeholder="Search by name..." 
+         class="p-4 mx-auto rounded block w-[50%]">
+  
+      <h1>Recommended Products</h1>
+      <div class="grid gap-4 id-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+       
+          @for(product of productData.slice(0,20)|search:SearchValue; track product._id){
+              <div class="product p-4 cursor-pointer" >
+
+                <div [routerLink]="['/productDetails',product._id]">
+                  <div class="mt-4">
+                    <img [src]="product.imageCover" [alt]="product.title" />
+                  </div>
+                  <div class="mt-4">
+                    <h2 class="text-main">{{product.category.name}}</h2>
+                    <h1 class="font-black">{{product.title.split(' ').slice(0,3).join(' ')}}</h1>
+                    <div class="flex flex-wrap justify-between">
+                      <h3>{{product.price}}</h3>
+                      <span><i class="fa-solid fa-star rating-color">{{product.ratingsAverage}}</i></span>
+                    </div>
+                  </div>
+                </div> 
+                 
+                  <div class="mt-4">
+                    <button (click)="addtoCart(product._id)" class="btn-main w-3/4 block mx-auto mt-4">+Add to cart</button>
+                  </div>
+                  
+              </div>     
+          }
+          
+      </div>
+    </div>
+  </section>
+ }
+

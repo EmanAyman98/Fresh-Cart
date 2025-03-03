@@ -1,0 +1,19 @@
+<section class="rounded-lg p-8 bg-gray-100 my-5">   
+    <div class="container w-[90%] mx-auto">
+      <h1 class="text-2xl font-bold text-gray-800 mb-6">Categories:</h1>
+      <div class="grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+       
+        @for(category of categoryData; track category._id){
+          <div class="bg-white shadow-lg rounded-lg p-4 flex flex-col items-center transition-all hover:scale-105">
+            <div class="mt-2">
+              <img [src]="category.image" [alt]="category.name" class="w-24 h-24 mx-auto rounded-full object-cover" />
+            </div>
+            <div class="mt-4">
+              <h2 class="text-lg font-semibold text-gray-700 text-center">{{category.name}}</h2>
+            </div>
+          </div>     
+        }
+          
+      </div>
+    </div>
+</section>
