@@ -10,6 +10,7 @@ import { authGuard } from './core/gurd/auth.guard';
 
 export const routes: Routes = [
     {path:'',component:AuthenticationComponent,children:[
+        {path:'',redirectTo:'login',pathMatch:'full'},
         {path:'login',component:LoginComponent,title:'login'},
         {path:'register',loadComponent:()=>import('./pages/register/register.component').then((c)=>c.RegisterComponent),title:'register'}
     ]},
